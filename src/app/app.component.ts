@@ -145,7 +145,7 @@ export class AppComponent implements OnInit {
   }
 
   loadPalettes () {
-    this.images = [];
+    this.images = (this.images[0].source === this.exampleImages[0].source) ? [] : this.images;
     // FileReader support
     if (FileReader && this.formData.file) {
         this.images.push({ palettes: [], source: '', mainColor: '' })
