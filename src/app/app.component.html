@@ -1,21 +1,50 @@
+<header>
+  <div class="container">
+    <h1 class="logo">Color palette generator</h1>
+    <p class="lead">
+      Upload some images and it will generate two color palettes from each one of them.<br>
+      To make it happen it uses two Javascript libraries "node-vibrant" and "color-thief-standalone" behind the hood.
+    </p>
 
-<input type="file" class="form-control" (change)="formData.file = $event.target.files[0]; loadPalettes()">
-<!-- <button (click)="loadPalette()">Show palettes</button> --> <br><br>
+    <input type="file" class="custom-file-input" (change)="formData.file = $event.target.files[0]; loadPalettes()">
+  </div>
+  <a href="https://github.com/JuanDelgadillo/angular-color-palettes-generator" target="_blank">
+    <img style="position: absolute; top: 0; right: 0; border: 0; z-index:1031;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork color palette generator on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png">
+  </a>
+</header>
 
-<div *ngFor="let image of images" style="margin-bottom: 50px;display: inline-block;vertical-align: top;margin-right: 20px;">
-  <span>File name: {{ image.name }}</span> <br>
-  <figure>
-    <img src="{{ image.source }}" alt="">
-  </figure>
-  <ng-container *ngFor="let palette of image.palettes">
-    <span>{{ palette.createdBy }}</span><br>
+<section id="examples" class="examples-section">
+  <div class="container" style="max-width: initial;">
+    <div id="example-images">
+      <div *ngFor="let image of images" class="image-section with-color-thief-output">
+        <div class="image-wrap">
+          <img class="target-image" src="{{ image.source }}">
+        </div>
+        <div class="color-thief-output" style="display: block;">
+          <div class="function get-color">
+            <h3 class="function-title">Dominant Color</h3>
+            <div class="swatches" style="height: initial;">
+              <div class="swatch" [style.background-color]="image.mainColor"></div>
+            </div>
+          </div>
 
-    <ng-container *ngFor="let color of palette.colors">
-      <span [style.background-color]="color.code">&nbsp;&nbsp; &nbsp;</span>
-      <span style="display:inline-block;">{{ color.name }} - {{ color.code }}</span>
-      <br>
-    </ng-container>
-    <br>
-  </ng-container>
+          <div class="function get-palette" *ngFor="let palette of image.palettes;let index = index">
+            <h3 class="function-title">Palette {{ index + 1 }}</h3>
+            <div class="function-output">
+              <div class="swatches">
+                <ng-container *ngFor="let color of palette.colors">
+                  <div class="swatch" [style.background-color]="color.code"></div>
+                </ng-container>
+              </div>
+            </div>
+            <div class="function-code">
+              <code>{{ palette.createdBy }}</code>
+            </div>
+          </div>
+        </div>
+      </div>
 
-</div>
+    </div>
+  </div>
+</section>
+
