@@ -1,4 +1,7 @@
-# PaletteColorGenerators
+# Angular color palettes generator
+
+Upload some images and it will generate two color palettes from each one of them.
+To make it happen it uses two Javascript libraries `node-vibrant` and `color-thief-standalone` behind the hood.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
 
