@@ -15,6 +15,7 @@
 
 <section id="examples" class="examples-section">
   <div class="container" style="max-width: initial;">
+    <h2 *ngIf="images[0].source === exampleImages[0].source">Examples</h2>
     <div id="example-images">
       <div *ngFor="let image of images" class="image-section with-color-thief-output">
         <div class="image-wrap">
